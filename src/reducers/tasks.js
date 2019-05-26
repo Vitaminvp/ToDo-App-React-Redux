@@ -1,6 +1,15 @@
 import { ACTIONS_TYPE, TASKS } from "../constants";
+import { load } from "redux-localstorage-simple";
 
-const tasks = (state = TASKS, { id, text, isCompleted, type }) => {
+let MY_TASKS = load({ namespace: 'todo-list' });
+
+if (!MY_TASKS || !MY_TASKS.tasks || !MY_TASKS.tasks.length) {
+  MY_TASKS = {
+    tasks: [...TASKS],
+  }
+}
+
+const tasks = (state = MY_TASKS.tasks, { id, text, isCompleted, type }) => {
   switch (type) {
     case ACTIONS_TYPE.ADD_TASK:
       return [

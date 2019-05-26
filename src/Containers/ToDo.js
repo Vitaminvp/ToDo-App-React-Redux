@@ -35,10 +35,28 @@ class ToDo extends Component {
     }
   };
 
+  filterTasks = (tasks, activeFilter) => {
+    switch (activeFilter) {
+      case "completed":
+        return tasks.filter(task => task.isCompleted);
+      case "active":
+        return tasks.filter(task => !task.isCompleted);
+      default:
+        return tasks;
+    }
+  };
+
   render() {
     const { taskText } = this.state;
-    const { tasks, filter, removeTask, completeTask, changeFilter } = this.props;
+    const {
+      tasks,
+      filter,
+      removeTask,
+      completeTask,
+      changeFilter
+    } = this.props;
     const isTasksExist = tasks && tasks.length > 0;
+    const filteredTasks = this.filterTasks(tasks, filter);
 
     return (
       <div className="todo-wrapper">
@@ -49,7 +67,7 @@ class ToDo extends Component {
         />
         {isTasksExist && (
           <List
-            tasksList={tasks}
+            tasksList={filteredTasks}
             removeTask={removeTask}
             completeTask={completeTask}
           />
