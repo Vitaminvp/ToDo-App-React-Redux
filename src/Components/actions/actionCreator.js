@@ -7,6 +7,13 @@ export const addTask = (id, text, isCompleted) => ({
     isCompleted
 });
 
+export const addComment = (id, parentId, text ) => ({
+    type: ACTIONS_TYPE.ADD_COMMENT,
+    id,
+    parentId,
+    text
+});
+
 export const removeTask = id => ({
     type: ACTIONS_TYPE.REMOVE_TASK,
     id

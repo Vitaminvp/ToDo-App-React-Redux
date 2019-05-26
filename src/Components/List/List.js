@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Item } from "../Item";
 
-const List = ({ tasksList, removeTask, completeTask }) => (
+const List = ({ tasksList, removeTask, completeTask, selectTask }) => (
   <ul className="todo-list">
     {tasksList.map(({ id, text, isCompleted }) => (
       <Item
@@ -13,6 +13,7 @@ const List = ({ tasksList, removeTask, completeTask }) => (
         isCompleted={isCompleted}
         removeTask={removeTask}
         completeTask={completeTask}
+        selectTask={selectTask}
       />
     ))}
   </ul>

@@ -2,17 +2,47 @@ export const TASKS = [
     {
         id: 1,
         text: "Learn ReactJS",
-        isCompleted: true
+        isCompleted: true,
+        comments: [
+            {
+                id:11,
+                text: 'Lorem ipsum dolor sit amet.'
+            },
+            {
+                id:12,
+                text: 'Lorem ipsum dolor sit amet.'
+            }
+        ]
     },
     {
         id: 2,
         text: "Learn Redux",
-        isCompleted: false
+        isCompleted: false,
+        comments: [
+            {
+                id:11,
+                text: 'Lorem ipsum dolor sit amet.'
+            },
+            {
+                id:12,
+                text: 'Lorem ipsum dolor sit amet.'
+            }
+        ]
     },
     {
         id: 3,
         text: "Learn React Router",
-        isCompleted: false
+        isCompleted: false,
+        comments: [
+            {
+                id:11,
+                text: 'Lorem ipsum dolor sit amet.'
+            },
+            {
+                id:12,
+                text: 'Lorem ipsum dolor sit amet.'
+            }
+        ]
     }
 ];
 
@@ -37,5 +67,6 @@ export const ACTIONS_TYPE = {
     ADD_TASK: 'ADD_TASK',
     REMOVE_TASK: 'REMOVE_TASK',
     COMPLETE_TASK: 'COMPLETE_TASK',
-    CHANGE_FILTER: 'CHANGE_FILTER'
+    CHANGE_FILTER: 'CHANGE_FILTER',
+    ADD_COMMENT: 'ADD_COMMENT'
 };

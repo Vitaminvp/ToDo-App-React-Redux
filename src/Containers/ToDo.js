@@ -1,42 +1,64 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import { Input } from "../Components/Input";
 import { List } from "../Components/List";
 import { Footer } from "../Components/Footer";
+import { CommentList } from "../Components/CommentList";
 import {
   addTask,
   removeTask,
   completeTask,
-  changeFilter
+  changeFilter,
+  addComment
 } from "../Components/actions/actionCreator";
+import { AddForm } from "../Components/AddForm";
 
 class ToDo extends Component {
+  inputAddTask = React.createRef();
+  inputAddComment = React.createRef();
   state = {
-    activeFilter: "all",
-    taskText: ""
+    currentTaskId: ""
   };
 
-  handleInputChange = ({ target: { value } }) => {
-    this.setState({ taskText: value });
+  handleAddTaskSubmit = () => {
+    const {
+      current: { value }
+    } = this.inputAddTask;
+    const { addTask } = this.props;
+    const timeStampId = new Date().getTime();
+    value.length > 3 &&
+      this.setState(
+        state => ({
+          ...state,
+          taskText: value,
+          currentTaskId: timeStampId
+        }),
+        () => {
+          addTask(timeStampId, value, false);
+          this.inputAddTask.current.value = "";
+        }
+      );
   };
 
-  addTask = ({ key }) => {
-    const { taskText } = this.state;
+  handleTaskSelect = currentTaskId => {
+    this.setState({
+      currentTaskId
+    });
+  };
 
-    if (taskText.length > 3 && key === "Enter") {
-      const { addTask } = this.props;
-
-      addTask(new Date().getTime(), taskText, false);
-
-      this.setState({
-        taskText: ""
-      });
+  handleAddCommentSubmit = () => {
+    const {
+      current: { value }
+    } = this.inputAddComment;
+    const { addComment } = this.props;
+    if (value.length > 3) {
+      const { currentTaskId } = this.state;
+      currentTaskId && addComment(new Date().getTime(), currentTaskId, value);
+      this.inputAddComment.current.value = "";
     }
   };
 
-  filterTasks = (tasks, activeFilter) => {
-    switch (activeFilter) {
+  filterTasks = (tasks, filter) => {
+    switch (filter) {
       case "completed":
         return tasks.filter(task => task.isCompleted);
       case "active":
@@ -47,7 +69,7 @@ class ToDo extends Component {
   };
 
   render() {
-    const { taskText } = this.state;
+    const { currentTaskId } = this.state;
     const {
       tasks,
       filter,
@@ -56,29 +78,43 @@ class ToDo extends Component {
       changeFilter
     } = this.props;
     const isTasksExist = tasks && tasks.length > 0;
-    const filteredTasks = this.filterTasks(tasks, filter);
 
+    const currentTask =
+      isTasksExist && tasks.filter(task => task.id === currentTaskId)[0];
+    const isCommentsExist = currentTask && currentTask.comments.length > 0;
+    const filteredTasks = this.filterTasks(tasks, filter);
     return (
       <div className="todo-wrapper">
-        <Input
-          value={taskText}
-          onChange={this.handleInputChange}
-          onKeyPress={this.addTask}
-        />
-        {isTasksExist && (
-          <List
-            tasksList={filteredTasks}
-            removeTask={removeTask}
-            completeTask={completeTask}
+        <div className="addTasks">
+          <AddForm
+            onSubmit={this.handleAddTaskSubmit}
+            ref={this.inputAddTask}
           />
-        )}
-        {isTasksExist && (
-          <Footer
-            amount={tasks.length}
-            activeFilter={filter}
-            changeFilter={changeFilter}
+          {isTasksExist && (
+            <List
+              tasksList={filteredTasks}
+              removeTask={removeTask}
+              completeTask={completeTask}
+              selectTask={this.handleTaskSelect}
+            />
+          )}
+          {isTasksExist && (
+            <Footer
+              amount={tasks.length}
+              activeFilter={filter}
+              changeFilter={changeFilter}
+            />
+          )}
+        </div>
+        <div className="add-comments">
+          {isCommentsExist && (
+            <CommentList commentsList={currentTask.comments} />
+          )}
+          <AddForm
+            onSubmit={this.handleAddCommentSubmit}
+            ref={this.inputAddComment}
           />
-        )}
+        </div>
       </div>
     );
   }
@@ -93,7 +129,8 @@ const mapDispatchToProps = {
   addTask,
   removeTask,
   completeTask,
-  changeFilter
+  changeFilter,
+  addComment
 };
 
 export default connect(

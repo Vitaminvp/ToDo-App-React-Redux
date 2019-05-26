@@ -9,7 +9,7 @@ if (!MY_TASKS || !MY_TASKS.tasks || !MY_TASKS.tasks.length) {
   }
 }
 
-const tasks = (state = MY_TASKS.tasks, { id, text, isCompleted, type }) => {
+const tasks = (state = MY_TASKS.tasks, { id, text, isCompleted, parentId, type, comments=[] }) => {
   switch (type) {
     case ACTIONS_TYPE.ADD_TASK:
       return [
@@ -17,7 +17,8 @@ const tasks = (state = MY_TASKS.tasks, { id, text, isCompleted, type }) => {
         {
           id,
           text,
-          isCompleted
+          isCompleted,
+          comments
         }
       ];
 
@@ -28,6 +29,13 @@ const tasks = (state = MY_TASKS.tasks, { id, text, isCompleted, type }) => {
       return [...state].map(task => {
         if (task.id === id) {
           task.isCompleted = !task.isCompleted;
+        }
+        return task;
+      });
+    case ACTIONS_TYPE.ADD_COMMENT:
+      return [...state].map(task => {
+        if (task.id === parentId) {
+          task.comments.push({ id, text });
         }
         return task;
       });
