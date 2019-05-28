@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 
 const Item = ({
   text,
@@ -16,20 +15,17 @@ const Item = ({
 }) => (
 
 <>
-    <ListItem button>
-        <i className="material-icons" onClick={() => completeTask(id)}>
+    <ListItem button divider>
+        <i className="material-icons" onClick={() => completeTask(id)} style={{marginRight:20}}>
             {isCompleted ? "check_circle" : "brightness_1"}
         </i>
-        <ListItemText  className={isCompleted ? "completed text" : "text"} onClick={() => selectTask(id)} >
-            {text}
+        <ListItemText onClick={() => selectTask(id)} >
+            <span>{text}</span>
         </ListItemText>
-
         <i className="material-icons" onClick={() => removeTask(id)}>
             clear
         </i>
-
     </ListItem>
-    <Divider light />
 </>
   // <li className={currentTaskId === id ? "current" : ""}>
   //   <i className="material-icons" onClick={() => completeTask(id)}>
