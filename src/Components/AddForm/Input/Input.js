@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 const Input = React.forwardRef((props, ref) => {
     const classes = useStyles();
     return <FormControl className={classes.margin}>
-            <InputLabel htmlFor="age-customized-select">Text</InputLabel>
+            <InputLabel htmlFor="age-customized-select">Minimum 4 symbols.</InputLabel>
             <BootstrapInput inputRef={ref}/>
         </FormControl>
 });

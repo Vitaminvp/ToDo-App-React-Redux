@@ -16,7 +16,7 @@ const Item = ({
 
 <>
     <ListItem button divider>
-        <i className="material-icons" onClick={() => completeTask(id)} style={{marginRight:20}}>
+        <i className="material-icons" onClick={() => completeTask(id)} style={{ marginRight:20 }}>
             {isCompleted ? "check_circle" : "brightness_1"}
         </i>
         <ListItemText onClick={() => selectTask(id)} >
