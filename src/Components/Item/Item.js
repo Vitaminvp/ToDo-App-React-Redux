@@ -7,9 +7,11 @@ const Item = ({
   id,
   removeTask,
   completeTask,
-  selectTask
+  selectTask,
+  currentTaskId,
+  commentsAmount
 }) => (
-  <li className="todo-item">
+  <li className={currentTaskId === id ? "current" : ""}>
     <i className="material-icons" onClick={() => completeTask(id)}>
       {isCompleted ? "check_circle" : "brightness_1"}
     </i>
@@ -17,7 +19,7 @@ const Item = ({
       className={isCompleted ? "completed text" : "text"}
       onClick={() => selectTask(id)}
     >
-      {text}
+        {text} <sup>{commentsAmount ? commentsAmount : null}</sup>
     </span>
     <i className="material-icons" onClick={() => removeTask(id)}>
       clear
@@ -30,7 +32,8 @@ Item.propTypes = {
   isCompleted: PropTypes.bool,
   removeTask: PropTypes.func,
   completeTask: PropTypes.func,
-  id: PropTypes.number
+  id: PropTypes.number,
+  currentTaskId: PropTypes.number
 };
 
 Item.defaultProps = {
@@ -38,7 +41,8 @@ Item.defaultProps = {
   isCompleted: false,
   removeTask: () => {},
   completeTask: () => {},
-  id: 0
+  id: null,
+  currentTaskId: null
 };
 
 export default Item;

@@ -1,8 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Input } from "./Input";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  }
+}));
+
 
 const AddForm = React.forwardRef(({onSubmit }, ref) => {
+  const classes = useStyles();
   const handleSubmit = event => {
     event.preventDefault();
     onSubmit(event);
@@ -10,7 +20,9 @@ const AddForm = React.forwardRef(({onSubmit }, ref) => {
   return (
     <form className="todo-form-wrapper" onSubmit={handleSubmit}>
       <Input ref={ref} />
-      <button type="submit">Add</button>
+      <Button size="medium" type="submit" variant="contained" color="primary" className={classes.button}>
+        Primary
+      </Button>
     </form>
   );
 });

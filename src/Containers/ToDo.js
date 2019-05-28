@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { List } from "../Components/List";
 import { Footer } from "../Components/Footer";
 import { CommentList } from "../Components/CommentList";
+
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+
 import {
   addTask,
   removeTask,
@@ -84,38 +88,43 @@ class ToDo extends Component {
     const isCommentsExist = currentTask && currentTask.comments.length > 0;
     const filteredTasks = this.filterTasks(tasks, filter);
     return (
-      <div className="todo-wrapper">
-        <div className="addTasks">
-          <AddForm
-            onSubmit={this.handleAddTaskSubmit}
-            ref={this.inputAddTask}
-          />
-          {isTasksExist && (
-            <List
-              tasksList={filteredTasks}
-              removeTask={removeTask}
-              completeTask={completeTask}
-              selectTask={this.handleTaskSelect}
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Paper>
+            <AddForm
+              onSubmit={this.handleAddTaskSubmit}
+              ref={this.inputAddTask}
             />
-          )}
-          {isTasksExist && (
-            <Footer
-              amount={tasks.length}
-              activeFilter={filter}
-              changeFilter={changeFilter}
+            {isTasksExist && (
+              <List
+                currentTaskId={currentTaskId}
+                tasksList={filteredTasks}
+                removeTask={removeTask}
+                completeTask={completeTask}
+                selectTask={this.handleTaskSelect}
+              />
+            )}
+            {isTasksExist && (
+              <Footer
+                amount={tasks.length}
+                activeFilter={filter}
+                changeFilter={changeFilter}
+              />
+            )}
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper>
+            {isCommentsExist && (
+              <CommentList commentsList={currentTask.comments} />
+            )}
+            <AddForm
+              onSubmit={this.handleAddCommentSubmit}
+              ref={this.inputAddComment}
             />
-          )}
-        </div>
-        <div className="add-comments">
-          {isCommentsExist && (
-            <CommentList commentsList={currentTask.comments} />
-          )}
-          <AddForm
-            onSubmit={this.handleAddCommentSubmit}
-            ref={this.inputAddComment}
-          />
-        </div>
-      </div>
+          </Paper>
+        </Grid>
+      </Grid>
     );
   }
 }

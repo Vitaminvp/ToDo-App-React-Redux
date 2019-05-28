@@ -1,26 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
-const Comment = ({ text }) => (
-  <li className="todo-comment">
-    <span className="comment">{text}</span>
-  </li>
-);
+const Comment = ({ text }) => {
+    return <ListItem alignItems="flex-start">
+      <ListItemAvatar>
+
+      </ListItemAvatar>
+      <ListItemText
+          primary={
+            <React.Fragment>
+              {text}
+            </React.Fragment>
+          }
+      />
+    </ListItem>
+
+};
 
 Comment.propTypes = {
   text: PropTypes.string,
-  isCompleted: PropTypes.bool,
-  removeTask: PropTypes.func,
-  completeTask: PropTypes.func,
-  id: PropTypes.number
 };
 
 Comment.defaultProps = {
   text: "",
-  isCompleted: false,
-  removeTask: () => {},
-  completeTask: () => {},
-  id: 0
 };
 
 export default Comment;
