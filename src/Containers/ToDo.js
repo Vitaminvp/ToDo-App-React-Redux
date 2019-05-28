@@ -106,7 +106,7 @@ class ToDo extends Component {
             )}
             {isTasksExist && (
               <Footer
-                amount={tasks.length}
+                amount={filteredTasks.length}
                 activeFilter={filter}
                 changeFilter={changeFilter}
               />
