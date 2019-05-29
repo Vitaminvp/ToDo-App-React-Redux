@@ -5,7 +5,6 @@ import { FormattedMessage } from "react-intl";
 const Title = ({ title }) => (
   <h2 className="title">
     <FormattedMessage id={title} defaultMessage="Title default" />
-    {/*{title}*/}
   </h2>
 );
 

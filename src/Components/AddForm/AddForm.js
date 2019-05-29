@@ -27,7 +27,7 @@ const AddForm = React.forwardRef(({ onSubmit }, ref) => {
         color="primary"
         className={classes.button}
       >
-        <FormattedMessage  id='buttonTitle' defaultMessage='Ok'/>
+        <FormattedMessage id="buttonTitle" defaultMessage="Ok" />
       </Button>
     </form>
   );

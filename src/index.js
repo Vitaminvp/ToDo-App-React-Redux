@@ -5,7 +5,7 @@ import "./index.scss";
 import App from "./Components/App";
 import { Provider } from "react-redux";
 import store from "./store";
-import { addLocaleData } from 'react-intl';
+import { addLocaleData } from "react-intl";
 import en from "react-intl/locale-data/en";
 import ru from "react-intl/locale-data/ru";
 import uk from "react-intl/locale-data/uk";
@@ -16,7 +16,7 @@ addLocaleData(uk);
 
 ReactDOM.render(
   <Provider store={store}>
-      <App />
+    <App />
   </Provider>,
   document.getElementById("root")
 );

@@ -23,7 +23,9 @@ const styles = {
 const Footer = ({ amount, activeFilter, changeFilter }) => {
   return (
     <>
-      <span style={styles.amountLeft}>{amount} <FormattedMessage id='total' defaultMessage='tasks left!'/></span>
+      <span style={styles.amountLeft}>
+        {amount} <FormattedMessage id="total" defaultMessage="tasks left!" />
+      </span>
       <div className="btn-group">
         {FILTERS.map(({ text, id }) => (
           <Button

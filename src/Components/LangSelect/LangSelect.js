@@ -24,19 +24,6 @@ const BootstrapInput = withStyles(theme => ({
     width: "auto",
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
     "&:focus": {
       borderRadius: 4,
       borderColor: "#80bdff",
@@ -46,38 +33,38 @@ const BootstrapInput = withStyles(theme => ({
 }))(InputBase);
 
 const LangSelect = ({ lang, handleLangChange }) => {
-    const handleChange = event => {
-        handleLangChange(event.target.value);
-    };
-    return (
-        <FormControl>
-            <InputLabel htmlFor="age-customized-select" style={{color: 'white'}}>
-                <FormattedMessage id="language" defaultMessage="Select language" />
-            </InputLabel>
-            <Select
-                value={lang}
-                onChange={handleChange}
-                input={<BootstrapInput name="age" id="age-customized-select" />}
-            >
-                <MenuItem value="">
-                    <em />
-                </MenuItem>
-                <MenuItem value="ru">Русский</MenuItem>
-                <MenuItem value="en">English</MenuItem>
-                <MenuItem value="uk">Українська</MenuItem>
-            </Select>
-        </FormControl>
-    );
+  const handleChange = event => {
+    handleLangChange(event.target.value);
+  };
+  return (
+    <FormControl>
+      <InputLabel htmlFor="lang-customized-select" style={{ color: "white" }}>
+        <FormattedMessage id="language" defaultMessage="Select language" />
+      </InputLabel>
+      <Select
+        value={lang}
+        onChange={handleChange}
+        input={<BootstrapInput name="lang" id="lang-customized-select" />}
+      >
+        <MenuItem value="">
+          <em />
+        </MenuItem>
+        <MenuItem value="ru">Русский</MenuItem>
+        <MenuItem value="en">English</MenuItem>
+        <MenuItem value="uk">Українська</MenuItem>
+      </Select>
+    </FormControl>
+  );
 };
 
 LangSelect.propTypes = {
-    lang: PropTypes.string,
-    handleLangChange: PropTypes.func,
+  lang: PropTypes.string,
+  handleLangChange: PropTypes.func
 };
 
 LangSelect.defaultProps = {
-    lang: '',
-    handleLangChange: () => {},
+  lang: "",
+  handleLangChange: () => {}
 };
 
 export default LangSelect;
