@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import InputBase from "@material-ui/core/InputBase";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import AddForm from "../AddForm";
@@ -53,38 +53,48 @@ const useStyles = makeStyles(theme => ({
   },
   margin: {
     margin: theme.spacing(1)
+  },
+  textField: {
+    width: '100%',
+    display: 'block'
   }
 }));
-const Input = React.forwardRef(({forComment}, ref) => {
+const Input = React.forwardRef(({ forComment }, ref) => {
   const classes = useStyles();
   return (
     <FormControl className={classes.margin}>
-      {/*<InputLabel htmlFor="age-customized-select">*/}
-        {/*Minimum 4 symbols.*/}
-      {/*</InputLabel>*/}
-      {/*<BootstrapInput inputRef={ref} />*/}
-      <TextField
+      {forComment ? (
+        <TextField
           id="outlined-dense"
-          label={<FormattedMessage id='mixLength' defaultMessage='Min 4 symbols.' />}
+          className={classes.textField}
+          label={
+            <FormattedMessage id="mixLength" defaultMessage="Min 4 symbols." />
+          }
           margin="dense"
           variant="outlined"
           inputRef={ref}
-          forComment&& multiline
-          forComment&& rowsMax="4"
           multiline
-          rowsMax="4"
-      />
+          rowsMax="6"
+          fullWidth={true}
+        />
+      ) : (
+        <Fragment>
+          <InputLabel htmlFor="age-customized-select">
+            <FormattedMessage id="mixLength" defaultMessage="Min 4 symbols." />
+          </InputLabel>
+          <BootstrapInput inputRef={ref} />
+        </Fragment>
+      )}
     </FormControl>
   );
 });
 
-AddForm.propTypes = {
+Input.propTypes = {
   forComment: PropTypes.boolean
 };
 
-AddForm.defaultProps = {
+Input.defaultProps = {
   forComment: false
 };
-
 
 export default Input;

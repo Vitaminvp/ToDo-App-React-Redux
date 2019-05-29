@@ -128,6 +128,7 @@ class ToDo extends Component {
                 <AddForm
                   onSubmit={this.handleAddTaskSubmit}
                   ref={this.inputAddTask}
+                  forComment={false}
                 />
                 {isTasksExist && (
                   <List
