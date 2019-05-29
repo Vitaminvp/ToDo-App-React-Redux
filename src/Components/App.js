@@ -1,13 +1,38 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import "./App.scss";
 import Title from "./Title/Title";
 import ToDo from "../Containers/ToDo";
+import { IntlProvider } from "react-intl";
+// import { changeLang } from "./actions/actionCreator";
+import { connect } from "react-redux";
+import messages from "../messages";
 
-const App = () => (
-  <Fragment>
-    <Title title="SOme title" />
-    <ToDo />
-  </Fragment>
-);
+class App extends Component {
+  render() {
+    const { lang } = this.props;
+    return (
+      <IntlProvider
+        locale={lang}
+        messages={messages[lang]}
+      >
+        <Fragment>
+          <Title title="title" />
+          <ToDo />
+        </Fragment>
+      </IntlProvider>
+    );
+  }
+}
 
-export default App;
+const mapStateToProps = ({ lang }) => ({
+  lang
+});
+
+// const mapDispatchToProps = {
+//   changeLang
+// };
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);

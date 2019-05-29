@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FILTERS } from "../../constants";
 import Button from "@material-ui/core/Button";
+import {FormattedMessage} from "react-intl";
 
 const styles = {
   filter: {
@@ -34,7 +35,7 @@ const Footer = ({ amount, activeFilter, changeFilter }) => {
             id={id}
             onClick={() => changeFilter(id)}
           >
-            {text}
+            <FormattedMessage  id={id} defaultMessage='Ok'/>
           </Button>
         ))}
       </div>

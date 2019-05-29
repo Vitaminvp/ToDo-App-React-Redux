@@ -1,16 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const Title = ({ title }) => (
-    <h2 className="title">{title}</h2>
+  <h2 className="title">
+    <FormattedMessage id={title} defaultMessage="Title default" />
+    {/*{title}*/}
+  </h2>
 );
 
 Title.propTypes = {
-    title: PropTypes.string,
+  title: PropTypes.string
 };
 
 Title.defaultProps = {
-    title: 'Simple title',
+  title: "Simple title"
 };
 
 export default Title;

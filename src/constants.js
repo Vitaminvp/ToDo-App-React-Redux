@@ -62,11 +62,13 @@ export const FILTERS = [
 ];
 
 export const BASE_FILTER = "all";
+export const BASE_LANG = "ru";
 
 export const ACTIONS_TYPE = {
   ADD_TASK: "ADD_TASK",
   REMOVE_TASK: "REMOVE_TASK",
   COMPLETE_TASK: "COMPLETE_TASK",
   CHANGE_FILTER: "CHANGE_FILTER",
-  ADD_COMMENT: "ADD_COMMENT"
+  ADD_COMMENT: "ADD_COMMENT",
+  CHANGE_LANG: "CHANGE_LANG"
 };

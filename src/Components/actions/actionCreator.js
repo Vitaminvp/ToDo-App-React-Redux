@@ -28,3 +28,8 @@ export const changeFilter = activeFilter => ({
     type: ACTIONS_TYPE.CHANGE_FILTER,
     activeFilter,
 });
+
+export const changeLang = lang => ({
+    type: ACTIONS_TYPE.CHANGE_LANG,
+    lang,
+});

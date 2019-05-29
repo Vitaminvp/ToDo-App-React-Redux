@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { List } from "../Components/List";
 import { Footer } from "../Components/Footer";
@@ -12,9 +12,11 @@ import {
   removeTask,
   completeTask,
   changeFilter,
-  addComment
+  addComment,
+  changeLang
 } from "../Components/actions/actionCreator";
 import { AddForm } from "../Components/AddForm";
+import { LangSelect } from "../Components/LangSelect";
 
 const styles = {
   Paper: {
@@ -78,7 +80,9 @@ class ToDo extends Component {
         return tasks;
     }
   };
-
+  handleLangChange = value => {
+    this.props.changeLang(value);
+  };
   render() {
     const { currentTaskId } = this.state;
     const {
@@ -86,7 +90,8 @@ class ToDo extends Component {
       filter,
       removeTask,
       completeTask,
-      changeFilter
+      changeFilter,
+      lang
     } = this.props;
 
     const isTasksExist = tasks && tasks.length > 0;
@@ -96,50 +101,54 @@ class ToDo extends Component {
     const isCommentsExist = currentTask && currentTask.comments.length > 0;
     const filteredTasks = this.filterTasks(tasks, filter);
     return (
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Paper style={styles.Paper}>
-            <AddForm
-              onSubmit={this.handleAddTaskSubmit}
-              ref={this.inputAddTask}
-            />
-            {isTasksExist && (
-              <List
-                currentTaskId={currentTaskId}
-                tasksList={filteredTasks}
-                removeTask={removeTask}
-                completeTask={completeTask}
-                selectTask={this.handleTaskSelect}
+      <Fragment>
+        <LangSelect lang={lang} handleLangChange={this.handleLangChange} />
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Paper style={styles.Paper}>
+              <AddForm
+                onSubmit={this.handleAddTaskSubmit}
+                ref={this.inputAddTask}
               />
-            )}
-            {isTasksExist && (
-              <Footer
-                amount={filteredTasks.length}
-                activeFilter={filter}
-                changeFilter={changeFilter}
+              {isTasksExist && (
+                <List
+                  currentTaskId={currentTaskId}
+                  tasksList={filteredTasks}
+                  removeTask={removeTask}
+                  completeTask={completeTask}
+                  selectTask={this.handleTaskSelect}
+                />
+              )}
+              {isTasksExist && (
+                <Footer
+                  amount={filteredTasks.length}
+                  activeFilter={filter}
+                  changeFilter={changeFilter}
+                />
+              )}
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper style={styles.Paper}>
+              {isCommentsExist && (
+                <CommentList commentsList={currentTask.comments} />
+              )}
+              <AddForm
+                onSubmit={this.handleAddCommentSubmit}
+                ref={this.inputAddComment}
               />
-            )}
-          </Paper>
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Paper style={styles.Paper}>
-            {isCommentsExist && (
-              <CommentList commentsList={currentTask.comments} />
-            )}
-            <AddForm
-              onSubmit={this.handleAddCommentSubmit}
-              ref={this.inputAddComment}
-            />
-          </Paper>
-        </Grid>
-      </Grid>
+      </Fragment>
     );
   }
 }
 
-const mapStateToProps = ({ tasks, filter }) => ({
+const mapStateToProps = ({ tasks, filter, lang }) => ({
   tasks,
-  filter
+  filter,
+  lang
 });
 
 const mapDispatchToProps = {
@@ -147,7 +156,8 @@ const mapDispatchToProps = {
   removeTask,
   completeTask,
   changeFilter,
-  addComment
+  addComment,
+  changeLang
 };
 
 export default connect(

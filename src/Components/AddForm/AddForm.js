@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Input } from "./Input";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import {FormattedMessage} from "react-intl";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -26,7 +27,7 @@ const AddForm = React.forwardRef(({ onSubmit }, ref) => {
         color="primary"
         className={classes.button}
       >
-        Primary
+        <FormattedMessage  id='buttonTitle' defaultMessage='Ok'/>
       </Button>
     </form>
   );
