@@ -24,6 +24,14 @@ const Item = ({
     },
     notCurrent: {
       borderLeft: "2px solid transparent"
+    },
+    sup: {
+      borderRadius: "10px",
+      backgroundColor: "#3f51b5",
+      padding: "0 9px 2px",
+      color: "white",
+      fontWeight: "600",
+      marginLeft: "10px"
     }
   }));
   const classes = useStyles();
@@ -44,6 +52,9 @@ const Item = ({
         </i>
         <ListItemText onClick={() => selectTask(id)}>
           <span>{text}</span>
+          {commentsAmount ? (
+            <sup className={classes.sup}>{commentsAmount}</sup>
+          ) : null}
         </ListItemText>
         <i className="material-icons" onClick={() => removeTask(id)}>
           clear
@@ -51,20 +62,6 @@ const Item = ({
       </ListItem>
     </div>
   );
-  // <li className={currentTaskId === id ? "current" : ""}>
-  //   <i className="material-icons" onClick={() => completeTask(id)}>
-  //     {isCompleted ? "check_circle" : "brightness_1"}
-  //   </i>
-  //   <span
-  //     className={isCompleted ? "completed text" : "text"}
-  //     onClick={() => selectTask(id)}
-  //   >
-  //       {text} <sup>{commentsAmount ? commentsAmount : null}</sup>
-  //   </span>
-  //   <i className="material-icons" onClick={() => removeTask(id)}>
-  //     clear
-  //   </i>
-  // </li>
 };
 
 Item.propTypes = {

@@ -4,24 +4,29 @@ import { FILTERS } from "../../constants";
 import Button from "@material-ui/core/Button";
 
 const styles = {
-  Filter: {
+  filter: {
     margin: "10px",
     opacity: "1"
   },
-  FilterSecondary: {
+  filterSecondary: {
     margin: "10px",
     opacity: "0.5"
+  },
+  amountLeft: {
+    marginLeft: "20px",
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: "bold"
   }
 };
 
 const Footer = ({ amount, activeFilter, changeFilter }) => {
   return (
-    <div className="footer">
-      <span className="amount">{`${amount} Tasks left`}</span>
+    <>
+      <span style={styles.amountLeft}>{`${amount} tasks left`}</span>
       <div className="btn-group">
         {FILTERS.map(({ text, id }) => (
           <Button
-            style={id === activeFilter ? styles.Filter : styles.FilterSecondary}
+            style={id === activeFilter ? styles.filter : styles.filterSecondary}
             variant="outlined"
             size="small"
             color={id === activeFilter ? "secondary" : "primary"}
@@ -33,7 +38,7 @@ const Footer = ({ amount, activeFilter, changeFilter }) => {
           </Button>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
