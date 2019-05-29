@@ -51,7 +51,7 @@ const LangSelect = ({ lang, handleLangChange }) => {
     };
     return (
         <FormControl>
-            <InputLabel htmlFor="age-customized-select">
+            <InputLabel htmlFor="age-customized-select" style={{color: 'white'}}>
                 <FormattedMessage id="language" defaultMessage="Select language" />
             </InputLabel>
             <Select

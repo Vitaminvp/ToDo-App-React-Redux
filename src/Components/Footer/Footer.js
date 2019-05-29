@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FILTERS } from "../../constants";
 import Button from "@material-ui/core/Button";
-import {FormattedMessage} from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 const styles = {
   filter: {
@@ -23,7 +23,7 @@ const styles = {
 const Footer = ({ amount, activeFilter, changeFilter }) => {
   return (
     <>
-      <span style={styles.amountLeft}>{`${amount} tasks left`}</span>
+      <span style={styles.amountLeft}>{amount} <FormattedMessage id='total' defaultMessage='tasks left!'/></span>
       <div className="btn-group">
         {FILTERS.map(({ text, id }) => (
           <Button
@@ -35,7 +35,7 @@ const Footer = ({ amount, activeFilter, changeFilter }) => {
             id={id}
             onClick={() => changeFilter(id)}
           >
-            <FormattedMessage  id={id} defaultMessage='Ok'/>
+            <FormattedMessage id={id} defaultMessage={text} />
           </Button>
         ))}
       </div>

@@ -21,7 +21,8 @@ import { LangSelect } from "../Components/LangSelect";
 const styles = {
   Paper: {
     padding: "20px 0",
-    margin: "30px"
+    margin: "30px",
+    minWidth: "300px"
   }
 };
 
@@ -101,46 +102,52 @@ class ToDo extends Component {
     const isCommentsExist = currentTask && currentTask.comments.length > 0;
     const filteredTasks = this.filterTasks(tasks, filter);
     return (
-      <Fragment>
-        <LangSelect lang={lang} handleLangChange={this.handleLangChange} />
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Paper style={styles.Paper}>
-              <AddForm
-                onSubmit={this.handleAddTaskSubmit}
-                ref={this.inputAddTask}
-              />
-              {isTasksExist && (
-                <List
-                  currentTaskId={currentTaskId}
-                  tasksList={filteredTasks}
-                  removeTask={removeTask}
-                  completeTask={completeTask}
-                  selectTask={this.handleTaskSelect}
+      <div style={{display: 'flex', flexWrap: 'wrap', backgroundColor: '#3f51b5'}}>
+        <div style={{minWidth: '300px', flex: '1', margin: 'auto', marginLeft: '50px'}}>
+          <LangSelect lang={lang} handleLangChange={this.handleLangChange} />
+        </div>
+        <div style={{minWidth: '300px', flex: '3', backgroundColor: '#fff'}}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Paper style={styles.Paper}>
+                <AddForm
+                    onSubmit={this.handleAddTaskSubmit}
+                    ref={this.inputAddTask}
                 />
-              )}
-              {isTasksExist && (
-                <Footer
-                  amount={filteredTasks.length}
-                  activeFilter={filter}
-                  changeFilter={changeFilter}
+                {isTasksExist && (
+                    <List
+                        currentTaskId={currentTaskId}
+                        tasksList={filteredTasks}
+                        removeTask={removeTask}
+                        completeTask={completeTask}
+                        selectTask={this.handleTaskSelect}
+                    />
+                )}
+                {isTasksExist && (
+                    <Footer
+                        amount={filteredTasks.length}
+                        activeFilter={filter}
+                        changeFilter={changeFilter}
+                    />
+                )}
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper style={styles.Paper}>
+                {isCommentsExist && (
+                    <CommentList commentsList={currentTask.comments} />
+                )}
+                <AddForm
+                    onSubmit={this.handleAddCommentSubmit}
+                    ref={this.inputAddComment}
                 />
-              )}
-            </Paper>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Paper style={styles.Paper}>
-              {isCommentsExist && (
-                <CommentList commentsList={currentTask.comments} />
-              )}
-              <AddForm
-                onSubmit={this.handleAddCommentSubmit}
-                ref={this.inputAddComment}
-              />
-            </Paper>
-          </Grid>
-        </Grid>
-      </Fragment>
+        </div>
+
+
+      </div>
     );
   }
 }

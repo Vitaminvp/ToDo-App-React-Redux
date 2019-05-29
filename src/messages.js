@@ -1,20 +1,22 @@
 export default {
     en: {
-        'title': 'some title in English',
+        'title': 'Some title in English',
         'buttonTitle': 'Add',
         'all': 'All',
         'active': 'active',
         'completed': 'completed',
-        'language': 'language'
+        'language': 'language',
+        'total': 'tasks left'
 
     },
     ru: {
-        'title': 'какойто заголовок на русском',
+        'title': 'Заголовок на русском',
         'buttonTitle': 'Добавить',
         'all': 'Все',
         'active': 'Активные',
         'completed': 'Завершенные',
-        'language': 'Язык'
+        'language': 'Язык',
+        'total': 'задач осталось'
     },
     uk: {
         'title': 'Найкращий заголовок',
@@ -22,6 +24,7 @@ export default {
         'all': 'Усі',
         'active': 'Активні',
         'completed': 'Завершені',
-        'language': 'Мова'
+        'language': 'Мова',
+        'total': 'завдань залишилось'
     }
 }
