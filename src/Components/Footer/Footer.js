@@ -1,23 +1,49 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FILTERS } from "../../constants";
+import Button from "@material-ui/core/Button";
+import { FormattedMessage } from "react-intl";
 
-const Footer = ({ amount, filter, changeFilter }) => (
-  <div className="footer">
-    <span className="amount">{`${amount} Tasks left`}</span>
-    <div className="btn-group">
-      {FILTERS.map(({ text, id }) => (
-        <button
-          key={id}
-          className={id === filter ? "filter-btn active" : "filter-btn"}
-          onClick={() => changeFilter(id)}
-        >
-          {text}
-        </button>
-      ))}
-    </div>
-  </div>
-);
+const styles = {
+  filter: {
+    margin: "10px",
+    opacity: "1"
+  },
+  filterSecondary: {
+    margin: "10px",
+    opacity: "0.5"
+  },
+  amountLeft: {
+    marginLeft: "20px",
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: "bold"
+  }
+};
+
+const Footer = ({ amount, activeFilter, changeFilter }) => {
+  return (
+    <>
+      <span style={styles.amountLeft}>
+        {amount} <FormattedMessage id="total" defaultMessage="tasks left!" />
+      </span>
+      <div className="btn-group">
+        {FILTERS.map(({ text, id }) => (
+          <Button
+            style={id === activeFilter ? styles.filter : styles.filterSecondary}
+            variant="outlined"
+            size="small"
+            color={id === activeFilter ? "secondary" : "primary"}
+            key={id}
+            id={id}
+            onClick={() => changeFilter(id)}
+          >
+            <FormattedMessage id={id} defaultMessage={text} />
+          </Button>
+        ))}
+      </div>
+    </>
+  );
+};
 
 Footer.propTypes = {
   amount: PropTypes.number,
@@ -26,8 +52,8 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  amount: 0,
-  filter: "all",
+  amount: null,
+  filter: "",
   changeFilter: () => {}
 };
 

@@ -1,19 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import List from "@material-ui/core/List";
 
 import { Item } from "../Item";
 
-const List = ({
+const ListItem = ({
   tasksList,
   removeTask,
   completeTask,
   selectTask,
   currentTaskId
 }) => (
-  <ul className="todo-list">
+  <List component="ul">
     {tasksList.map(({ id, text, isCompleted, comments }) => {
       const commentsAmount = comments.length;
-      return <Item
+      return (
+        <Item
           currentTaskId={currentTaskId}
           key={id}
           id={id}
@@ -23,23 +25,24 @@ const List = ({
           completeTask={completeTask}
           selectTask={selectTask}
           commentsAmount={commentsAmount}
-      />
+        />
+      );
     })}
-  </ul>
+  </List>
 );
 
-List.propTypes = {
+ListItem.propTypes = {
   tasksList: PropTypes.array,
   removeTask: PropTypes.func,
   completeTask: PropTypes.func,
   currentTaskId: PropTypes.number
 };
 
-List.defaultProps = {
+ListItem.defaultProps = {
   tasksList: [],
   removeTask: () => {},
   completeTask: () => {},
   currentTaskId: null
 };
 
-export default List;
+export default ListItem;

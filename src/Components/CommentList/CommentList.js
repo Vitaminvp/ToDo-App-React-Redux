@@ -2,24 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Comment } from "./Comment";
+import List from "@material-ui/core/List";
 
 const CommentList = ({ commentsList }) => (
-    <ul className="todo-list">
-        {commentsList.map(({ id, text }) => (
-            <Comment
-                key={id}
-                text={text}
-            />
-        ))}
-    </ul>
+  <List component="ul">
+    {commentsList.map(({ id, text }) => (
+      <Comment key={id} text={text} />
+    ))}
+  </List>
 );
 
 CommentList.propTypes = {
-    commentsList: PropTypes.array,
+  commentsList: PropTypes.array
 };
 
 CommentList.defaultProps = {
-    commentsList: [],
+  commentsList: []
 };
 
 export default CommentList;

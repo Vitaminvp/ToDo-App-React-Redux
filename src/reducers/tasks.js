@@ -3,6 +3,7 @@ import { load } from "redux-localstorage-simple";
 
 let MY_TASKS = load({ namespace: 'todo-list' });
 
+
 if (!MY_TASKS || !MY_TASKS.tasks || !MY_TASKS.tasks.length) {
   MY_TASKS = {
     tasks: [...TASKS],
