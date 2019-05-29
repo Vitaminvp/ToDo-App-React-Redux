@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { List } from "../Components/List";
 import { Footer } from "../Components/Footer";
 import { CommentList } from "../Components/CommentList";
+import {FormattedMessage} from 'react-intl';
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -106,7 +107,7 @@ class ToDo extends Component {
             )}
             {isTasksExist && (
               <Footer
-                amount={tasks.length}
+                amount={filteredTasks.length}
                 activeFilter={filter}
                 changeFilter={changeFilter}
               />
