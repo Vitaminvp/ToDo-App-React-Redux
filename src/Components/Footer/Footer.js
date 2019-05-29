@@ -1,28 +1,41 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FILTERS } from "../../constants";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
-const Footer = ({ amount, filter, changeFilter }) => (
-  <div className="footer">
-    <span className="amount">{`${amount} Tasks left`}</span>
-    <div className="btn-group">
-      {FILTERS.map(({ text, id }) => (
+const styles = {
+  Filter: {
+    margin: "10px",
+    opacity: "1"
+  },
+  FilterSecondary: {
+    margin: "10px",
+    opacity: "0.5"
+  }
+};
 
+const Footer = ({ amount, activeFilter, changeFilter }) => {
+  return (
+    <div className="footer">
+      <span className="amount">{`${amount} Tasks left`}</span>
+      <div className="btn-group">
+        {FILTERS.map(({ text, id }) => (
           <Button
-              variant="outlined"
-              size="small"
-              color="primary"
-              key={id}
-              className={id === filter ? "filter-btn active" : "filter-btn"}
-              onClick={() => changeFilter(id)}
+            style={id === activeFilter ? styles.Filter : styles.FilterSecondary}
+            variant="outlined"
+            size="small"
+            color={id === activeFilter ? "secondary" : "primary"}
+            key={id}
+            id={id}
+            onClick={() => changeFilter(id)}
           >
-              {text}
+            {text}
           </Button>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Footer.propTypes = {
   amount: PropTypes.number,
@@ -31,8 +44,8 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  amount: 0,
-  filter: "all",
+  amount: null,
+  filter: "",
   changeFilter: () => {}
 };
 

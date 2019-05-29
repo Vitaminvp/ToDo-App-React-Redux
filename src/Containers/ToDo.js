@@ -16,6 +16,13 @@ import {
 } from "../Components/actions/actionCreator";
 import { AddForm } from "../Components/AddForm";
 
+const styles = {
+  Paper: {
+    padding: "20px 0",
+    margin: "30px"
+  }
+};
+
 class ToDo extends Component {
   inputAddTask = React.createRef();
   inputAddComment = React.createRef();
@@ -81,6 +88,7 @@ class ToDo extends Component {
       completeTask,
       changeFilter
     } = this.props;
+
     const isTasksExist = tasks && tasks.length > 0;
 
     const currentTask =
@@ -90,7 +98,7 @@ class ToDo extends Component {
     return (
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Paper>
+          <Paper style={styles.Paper}>
             <AddForm
               onSubmit={this.handleAddTaskSubmit}
               ref={this.inputAddTask}
@@ -114,7 +122,7 @@ class ToDo extends Component {
           </Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper>
+          <Paper style={styles.Paper}>
             {isCommentsExist && (
               <CommentList commentsList={currentTask.comments} />
             )}

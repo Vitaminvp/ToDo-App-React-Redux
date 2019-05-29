@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import { makeStyles } from "@material-ui/core/styles";
 
 const Item = ({
   text,
@@ -12,21 +13,44 @@ const Item = ({
   selectTask,
   currentTaskId,
   commentsAmount
-}) => (
+}) => {
+  const useStyles = makeStyles(theme => ({
+    root: {
+      width: "100%",
+      backgroundColor: theme.palette.background.paper
+    },
+    current: {
+      borderLeft: "2px solid red"
+    },
+    notCurrent: {
+      borderLeft: "2px solid transparent"
+    }
+  }));
+  const classes = useStyles();
 
-<>
-    <ListItem button divider>
-        <i className="material-icons" onClick={() => completeTask(id)} style={{ marginRight:20 }}>
-            {isCompleted ? "check_circle" : "brightness_1"}
+  return (
+    <div>
+      <ListItem
+        button
+        divider
+        className={currentTaskId !== id ? classes.notCurrent : classes.current}
+      >
+        <i
+          className="material-icons"
+          onClick={() => completeTask(id)}
+          style={{ marginRight: 20 }}
+        >
+          {isCompleted ? "check_circle" : "brightness_1"}
         </i>
-        <ListItemText onClick={() => selectTask(id)} >
-            <span>{text}</span>
+        <ListItemText onClick={() => selectTask(id)}>
+          <span>{text}</span>
         </ListItemText>
         <i className="material-icons" onClick={() => removeTask(id)}>
-            clear
+          clear
         </i>
-    </ListItem>
-</>
+      </ListItem>
+    </div>
+  );
   // <li className={currentTaskId === id ? "current" : ""}>
   //   <i className="material-icons" onClick={() => completeTask(id)}>
   //     {isCompleted ? "check_circle" : "brightness_1"}
@@ -41,7 +65,7 @@ const Item = ({
   //     clear
   //   </i>
   // </li>
-);
+};
 
 Item.propTypes = {
   text: PropTypes.string,

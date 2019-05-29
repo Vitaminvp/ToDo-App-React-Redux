@@ -5,22 +5,19 @@ import { Comment } from "./Comment";
 import List from "@material-ui/core/List";
 
 const CommentList = ({ commentsList }) => (
-    <List component="ul">
-        {commentsList.map(({ id, text }) => (
-            <Comment
-                key={id}
-                text={text}
-            />
-        ))}
-    </List>
+  <List component="ul">
+    {commentsList.map(({ id, text }) => (
+      <Comment key={id} text={text} />
+    ))}
+  </List>
 );
 
 CommentList.propTypes = {
-    commentsList: PropTypes.array,
+  commentsList: PropTypes.array
 };
 
 CommentList.defaultProps = {
-    commentsList: [],
+  commentsList: []
 };
 
 export default CommentList;
