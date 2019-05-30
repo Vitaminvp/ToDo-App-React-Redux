@@ -7,7 +7,6 @@ import InputBase from "@material-ui/core/InputBase";
 import TextField from "@material-ui/core/TextField";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import AddForm from "../AddForm";
 
 const BootstrapInput = withStyles(theme => ({
   root: {
@@ -24,19 +23,6 @@ const BootstrapInput = withStyles(theme => ({
     width: "auto",
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
     "&:focus": {
       borderRadius: 4,
       borderColor: "#80bdff",
@@ -57,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   textField: {
     width: '100%',
     display: 'block',
-    minWidth: '320px'
+    minWidth: '250px'
   }
 }));
 const Input = React.forwardRef(({ forComment }, ref) => {
@@ -91,7 +77,7 @@ const Input = React.forwardRef(({ forComment }, ref) => {
 });
 
 Input.propTypes = {
-  forComment: PropTypes.boolean
+  forComment: PropTypes.bool
 };
 
 Input.defaultProps = {

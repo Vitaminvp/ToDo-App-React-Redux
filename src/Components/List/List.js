@@ -35,14 +35,14 @@ ListItem.propTypes = {
   tasksList: PropTypes.array,
   removeTask: PropTypes.func,
   completeTask: PropTypes.func,
-  currentTaskId: PropTypes.number
+  currentTaskId: PropTypes.string
 };
 
 ListItem.defaultProps = {
   tasksList: [],
   removeTask: () => {},
   completeTask: () => {},
-  currentTaskId: null
+  currentTaskId: ''
 };
 
 export default ListItem;

@@ -132,7 +132,7 @@ class ToDo extends Component {
                 />
                 {isTasksExist && (
                   <List
-                    currentTaskId={currentTaskId}
+                    currentTaskId={currentTaskId+''}
                     tasksList={filteredTasks}
                     removeTask={removeTask}
                     completeTask={completeTask}
@@ -157,6 +157,7 @@ class ToDo extends Component {
                   onSubmit={this.handleAddCommentSubmit}
                   ref={this.inputAddComment}
                   forComment={true}
+                  currentTaskId={currentTaskId.toString()}
                 />
               </Paper>
             </Grid>

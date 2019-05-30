@@ -43,7 +43,7 @@ const Item = ({
     <ListItem
       button
       divider
-      className={currentTaskId !== id ? classes.notCurrent : classes.current}
+      className={+currentTaskId !== id ? classes.notCurrent : classes.current}
     >
       <i
         className="material-icons"
@@ -71,7 +71,7 @@ Item.propTypes = {
   removeTask: PropTypes.func,
   completeTask: PropTypes.func,
   id: PropTypes.number,
-  currentTaskId: PropTypes.number
+  currentTaskId: PropTypes.string
 };
 
 Item.defaultProps = {
@@ -80,7 +80,7 @@ Item.defaultProps = {
   removeTask: () => {},
   completeTask: () => {},
   id: null,
-  currentTaskId: null
+  currentTaskId: ''
 };
 
 export default Item;
