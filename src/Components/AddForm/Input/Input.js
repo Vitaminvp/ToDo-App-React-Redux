@@ -56,7 +56,8 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     width: '100%',
-    display: 'block'
+    display: 'block',
+    minWidth: '320px'
   }
 }));
 const Input = React.forwardRef(({ forComment }, ref) => {
