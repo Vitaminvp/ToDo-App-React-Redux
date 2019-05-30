@@ -132,7 +132,7 @@ class ToDo extends Component {
                 />
                 {isTasksExist && (
                   <List
-                    currentTaskId={currentTaskId+''}
+                    currentTaskId={currentTaskId.toString()}
                     tasksList={filteredTasks}
                     removeTask={removeTask}
                     completeTask={completeTask}
