@@ -104,21 +104,12 @@ class ToDo extends Component {
     const isCommentsExist = currentTask && currentTask.comments.length > 0;
     const filteredTasks = this.filterTasks(tasks, filter);
     return (
-      <div
+      <div className="wrapper"
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          backgroundColor: "#3f51b5"
+
         }}
       >
-        <div
-          style={{
-            minWidth: "300px",
-            flex: "1",
-            margin: "auto",
-            marginLeft: "50px"
-          }}
-        >
+        <div className="sidebar">
           <LangSelect lang={lang} handleLangChange={this.handleLangChange} />
         </div>
         <div style={{ minWidth: "300px", flex: "3", backgroundColor: "#fff" }}>

@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <IntlProvider locale={lang} messages={messages[lang]}>
         <Fragment>
-          <Title title="title" />
+            <Title title="title" />
           <ToDo />
         </Fragment>
       </IntlProvider>

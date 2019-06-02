@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -37,23 +37,25 @@ const LangSelect = ({ lang, handleLangChange }) => {
     handleLangChange(event.target.value);
   };
   return (
-    <FormControl>
-      <InputLabel htmlFor="lang-customized-select" style={{ color: "white" }}>
-        <FormattedMessage id="language" defaultMessage="Select language" />
-      </InputLabel>
-      <Select
-        value={lang}
-        onChange={handleChange}
-        input={<BootstrapInput name="lang" id="lang-customized-select" />}
-      >
-        <MenuItem value="">
-          <em />
-        </MenuItem>
-        <MenuItem value="ru">Русский</MenuItem>
-        <MenuItem value="en">English</MenuItem>
-        <MenuItem value="uk">Українська</MenuItem>
-      </Select>
-    </FormControl>
+    <div className='i18n'>
+      <FormControl>
+        <InputLabel htmlFor="lang-customized-select" style={{ color: "white" }}>
+          <FormattedMessage id="language" defaultMessage="Select language" />
+        </InputLabel>
+        <Select
+          value={lang}
+          onChange={handleChange}
+          input={<BootstrapInput name="lang" id="lang-customized-select" />}
+        >
+          <MenuItem value="">
+            <em />
+          </MenuItem>
+          <MenuItem value="ru">Русский</MenuItem>
+          <MenuItem value="en">English</MenuItem>
+          <MenuItem value="uk">Українська</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
   );
 };
 

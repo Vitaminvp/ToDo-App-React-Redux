@@ -5,3 +5,27 @@
     width: 30%;
   }
 }
+.title{
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  position: absolute;
+  color: #fff;
+  left: 1rem;
+  top: 1rem;
+  text-transform: uppercase;
+}
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #3f51b5;
+}
+.sidebar {
+  min-width: 300px;
+  flex: 1;
+  margin: auto auto auto 50px;
+  height: calc(100vh - 21px);
+}
+.i18n {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
