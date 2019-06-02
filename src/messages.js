@@ -10,7 +10,7 @@ export default {
     mixLength: "Min 4 symbols."
   },
   ru: {
-    title: "Заголовок",
+    title: "Заглавие",
     buttonTitle: "Добавить",
     all: "Все",
     active: "Активные",
@@ -20,7 +20,7 @@ export default {
     mixLength: "Минимум 4 символа."
   },
   uk: {
-    title: "Найкращий заголовок",
+    title: "Заголовок",
     buttonTitle: "Додати",
     all: "Усі",
     active: "Активні",
