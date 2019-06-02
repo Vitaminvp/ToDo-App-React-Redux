@@ -104,17 +104,13 @@ class ToDo extends Component {
     const isCommentsExist = currentTask && currentTask.comments.length > 0;
     const filteredTasks = this.filterTasks(tasks, filter);
     return (
-      <div className="wrapper"
-        style={{
-
-        }}
-      >
+      <div className="wrapper">
         <div className="sidebar">
           <LangSelect lang={lang} handleLangChange={this.handleLangChange} />
         </div>
-        <div style={{ minWidth: "300px", flex: "3", backgroundColor: "#fff" }}>
+        <div className="todos">
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Paper style={styles.Paper}>
                 <AddForm
                   onSubmit={this.handleAddTaskSubmit}
@@ -139,7 +135,7 @@ class ToDo extends Component {
                 )}
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Paper style={styles.Paper}>
                 {isCommentsExist && (
                   <CommentList commentsList={currentTask.comments} />
