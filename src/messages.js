@@ -1,6 +1,6 @@
 export default {
   en: {
-    title: "Some title in English",
+    title: "Some title",
     buttonTitle: "Add",
     all: "All",
     active: "active",
@@ -10,7 +10,7 @@ export default {
     mixLength: "Min 4 symbols."
   },
   ru: {
-    title: "Заголовок на русском",
+    title: "Заголовок",
     buttonTitle: "Добавить",
     all: "Все",
     active: "Активные",
