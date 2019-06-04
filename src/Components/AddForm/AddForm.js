@@ -8,12 +8,15 @@ import { FormattedMessage } from "react-intl";
 const useStyles = makeStyles(theme => ({
   button: {
     maxWidth: "120px",
-    marginRight: "10px",
+    margin: "9px",
     alignSelf: "flex-end"
   },
   flexRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     "& button": {
-      marginTop: "32px"
+      //marginTop: "32px"
     }
   },
   flexColumn: {

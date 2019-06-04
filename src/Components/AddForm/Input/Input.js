@@ -23,6 +23,7 @@ const BootstrapInput = withStyles(theme => ({
     width: "auto",
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
+    flex: '1',
     "&:focus": {
       borderRadius: 4,
       borderColor: "#80bdff",
@@ -38,7 +39,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   margin: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    flex: '1'
   },
   textField: {
     width: '100%',

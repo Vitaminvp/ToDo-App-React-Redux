@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from '@material-ui/core/Tooltip';
 
 const Item = ({
   text,
@@ -20,21 +21,26 @@ const Item = ({
       backgroundColor: theme.palette.background.paper
     },
     current: {
-      borderLeft: "2px solid red"
+      borderLeft: "2px solid red",
+      boxShadow: '0 0 5px #333',
     },
     notCurrent: {
-      borderLeft: "2px solid transparent"
+      borderLeft: "2px solid transparent",
+      "&:hover": {
+        boxShadow: '0 0 5px #333',
+      }
     },
     sup: {
       borderRadius: "10px",
-      backgroundColor: "#3f51b5",
+      backgroundColor: "rgba(63, 81, 181, 0.5)",
       padding: "0 9px 2px",
       color: "white",
       fontWeight: "600",
       marginLeft: "10px"
     },
     completed: {
-      textDecoration: "line-through;"
+      textDecorationColor: '#f50057',
+      textDecorationLine: 'line-through'
     }
   }));
   const classes = useStyles();
@@ -58,9 +64,12 @@ const Item = ({
           <sup className={classes.sup}>{commentsAmount}</sup>
         ) : null}
       </ListItemText>
-      <i className="material-icons" onClick={() => removeTask(id)}>
-        clear
-      </i>
+      <Tooltip title="Delete task">
+        <i className="material-icons close" onClick={() => removeTask(id)}>
+          clear
+        </i>
+      </Tooltip>
+
     </ListItem>
   );
 };
