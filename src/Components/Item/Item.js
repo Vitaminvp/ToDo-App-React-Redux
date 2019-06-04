@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from "@material-ui/core/Tooltip";
 
 const Item = ({
   text,
@@ -22,25 +22,33 @@ const Item = ({
     },
     current: {
       borderLeft: "2px solid red",
-      boxShadow: '0 0 5px #333',
+      boxShadow: "0 0 5px #333"
     },
     notCurrent: {
       borderLeft: "2px solid transparent",
       "&:hover": {
-        boxShadow: '0 0 5px #333',
+        boxShadow: "0 0 5px #333"
       }
     },
     sup: {
       borderRadius: "10px",
-      backgroundColor: "rgba(63, 81, 181, 0.5)",
-      padding: "0 9px 2px",
+      backgroundColor: "rgb(250, 128, 114)",
+      padding: "0 7px 1px",
       color: "white",
       fontWeight: "600",
-      marginLeft: "10px"
+      marginLeft: "10px",
+      boxShadow: "1px 1px 2px #000",
+      top: "1px",
+      right: '40px',
+      position: "absolute"
     },
     completed: {
-      textDecorationColor: '#f50057',
-      textDecorationLine: 'line-through'
+      textDecorationColor: "#f50057",
+      textDecorationLine: "line-through"
+    },
+    item: {
+      paddingTop: '20px',
+      paddingBottom: '20px'
     }
   }));
   const classes = useStyles();
@@ -58,7 +66,7 @@ const Item = ({
       >
         {isCompleted ? "check_circle" : "brightness_1"}
       </i>
-      <ListItemText onClick={() => selectTask(id)}>
+      <ListItemText className={classes.item} onClick={() => selectTask(id)}>
         <span className={isCompleted ? classes.completed : ""}>{text}</span>
         {commentsAmount ? (
           <sup className={classes.sup}>{commentsAmount}</sup>
@@ -69,7 +77,6 @@ const Item = ({
           clear
         </i>
       </Tooltip>
-
     </ListItem>
   );
 };
@@ -89,7 +96,7 @@ Item.defaultProps = {
   removeTask: () => {},
   completeTask: () => {},
   id: null,
-  currentTaskId: ''
+  currentTaskId: ""
 };
 
 export default Item;
